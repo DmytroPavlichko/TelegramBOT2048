@@ -70,3 +70,4 @@ SQLAlchemy==2.0.35
 
 *Видео-демонстрация возможностей бота* доступна [здесь]([https://rutube.ru/video/private/06223afdb8c13de35756e20273152cea/?p=Al2t5kkmsl0XcjURjGZPQg](https://rutube.ru/video/private/38bae2fcdb307aa180317f562b38424b/?p=bdv6BXc-HrkfpDZMYjoa4g)). Попробуйте и оцените игру в [2048Bot на Telegram](https://t.me/fast_api_2048BOT).
 
+P.S. Вдохновлено проектом: [2048](https://github.com/edopedia/2048)
