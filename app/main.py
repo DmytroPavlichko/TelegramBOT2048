@@ -31,17 +31,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+
 app.mount('/static', StaticFiles(directory='app/static'), 'static')
 
 
-@app.get("/")
-def main_web_handler():
-    return "Everything ok!"
-
-
-@app.get("/game")
-def game_web_handler():
-    return "Game!"
+app.include_router(game_router)
 
 
 @app.post("/webhook")
@@ -51,8 +45,6 @@ async def webhook(request: Request) -> None:
     await dp.feed_update(bot, update)
     logging.info("Update processed")
 
-
-app.include_router(game_router)
 
 if __name__ == '__main__':
     uvicorn.run(app)
