@@ -34,6 +34,11 @@ app = FastAPI(lifespan=lifespan)
 app.mount('/static', StaticFiles(directory='app/static'), 'static')
 
 
+@app.get("/")
+def main_web_handler():
+    return "Everything ok!"
+
+
 @app.post("/webhook")
 async def webhook(request: Request) -> None:
     logging.info("Received webhook request")
