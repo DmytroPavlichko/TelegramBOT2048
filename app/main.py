@@ -39,7 +39,7 @@ def main_web_handler():
     return "Everything ok!"
 
 
-@app.get("/game", response_class=HTMLResponse)
+@app.get("/game")
 def game_web_handler():
     return "Game!"
 
