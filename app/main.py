@@ -39,6 +39,11 @@ def main_web_handler():
     return "Everything ok!"
 
 
+@router.get("/game", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("base.html", {"request": request})
+
+
 @app.post("/webhook")
 async def webhook(request: Request) -> None:
     logging.info("Received webhook request")
