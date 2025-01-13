@@ -35,15 +35,15 @@ app = FastAPI(lifespan=lifespan)
 app.mount('/static', StaticFiles(directory='app/static'), 'static')
 
 
-app.include_router(game_router)
-
-
 @app.post("/webhook")
 async def webhook(request: Request) -> None:
     logging.info("Received webhook request")
     update = Update.model_validate(await request.json(), context={"bot": bot})
     await dp.feed_update(bot, update)
     logging.info("Update processed")
+
+
+app.include_router(game_router)
 
 
 if __name__ == '__main__':
