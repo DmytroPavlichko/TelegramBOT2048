@@ -48,7 +48,7 @@ app.include_router(game_router)
 
 @app.get("/test")
 def main_web_handler():
-    return "OK!"
+    return settings.get_webhook_url()
 
 
 if __name__ == '__main__':
