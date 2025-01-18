@@ -36,12 +36,19 @@ app.mount('/static', StaticFiles(directory='app/static'), 'static')
 
 
 @app.post("/webhook")
+async def bot_webhook(update: dict):
+    await dp.feed_raw_update(bot, update)
+    # await bot.session.close()
+
+
+"""
+@app.post("/webhook")
 async def webhook(request: Request) -> None:
     logging.info("Received webhook request")
     update = Update.model_validate(await request.json(), context={"bot": bot})
     await dp.feed_update(bot, update)
     logging.info("Update processed")
-
+"""
 
 app.include_router(game_router)
 
