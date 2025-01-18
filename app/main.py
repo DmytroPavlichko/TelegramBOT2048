@@ -46,5 +46,10 @@ async def webhook(request: Request) -> None:
 app.include_router(game_router)
 
 
+@app.get("/test")
+def main_web_handler():
+    return "OK!
+
+
 if __name__ == '__main__':
     uvicorn.run(app)
