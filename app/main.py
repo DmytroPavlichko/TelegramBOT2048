@@ -43,7 +43,7 @@ app.mount('/static', StaticFiles(directory='app/static'), 'static')
 @app.post("/webhook")
 async def bot_webhook(update: dict):
     await dp.feed_raw_update(bot, update)
-    # await bot.session.close()
+    await bot.session.close()
 
 
 """
