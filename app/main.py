@@ -7,7 +7,7 @@ from aiogram.filters import CommandStart
 from app.config import settings
 from app.game.router import router as game_router
 from fastapi.staticfiles import StaticFiles
-from aiogram.types import Update
+from aiogram.types import Update, Message
 from fastapi import FastAPI, Request
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
