@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 
 from app.bot.create_bot import bot, dp, stop_bot, start_bot
 from app.bot.handlers.router import router as bot_router
+from aiogram.filters import CommandStart
 from app.config import settings
 from app.game.router import router as game_router
 from fastapi.staticfiles import StaticFiles
@@ -15,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logging.info("Starting bot setup...")
-    dp.include_router(bot_router)
+    # dp.include_router(bot_router)
     await start_bot()
     webhook_url = settings.get_webhook_url()
     await bot.set_webhook(url=webhook_url,
@@ -28,6 +29,10 @@ async def lifespan(app: FastAPI):
     await stop_bot()
     logging.info("Webhook deleted")
 
+
+@dp.message(CommandStart())
+async def pr_start(message: Message):
+    await message.answer("Start handled")
 
 app = FastAPI(lifespan=lifespan)
 
