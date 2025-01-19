@@ -55,7 +55,7 @@ app.include_router(game_router)
 
 @app.get("/test")
 def main_web_handler():
-    return str(dp.sub_routers)
+    return str(dp)
 
 
 if __name__ == '__main__':
