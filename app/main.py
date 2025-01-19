@@ -2,7 +2,8 @@ import logging
 from contextlib import asynccontextmanager
 
 from app.bot.create_bot import bot, dp, stop_bot, start_bot
-from app.bot.handlers.router import router as bot_router
+# from app.bot.handlers.router import router as bot_router
+from app.bot.handlers import router
 from aiogram.filters import CommandStart
 from app.config import settings
 from app.game.router import router as game_router
@@ -23,7 +24,7 @@ async def lifespan(app: FastAPI):
                           allowed_updates=dp.resolve_used_update_types(),
                           drop_pending_updates=True)
     logging.info(f"Webhook set to {webhook_url}")
-    dp.include_router(bot_router)
+    dp.include_router(router.router)
     yield
     logging.info("Shutting down bot...")
     await bot.delete_webhook()
