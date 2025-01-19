@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from aiogram.filters import CommandStart
+from aiogram.filters import Command, CommandStart
 from aiogram.types import Message, CallbackQuery
 from app.game.dao import UserDAO
 from app.game.schemas import TelegramIDModel, UserModel
@@ -12,6 +12,11 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     await message.answer("Start handled")
+
+
+@router.message(Command(commands='help'))
+async def process_help_command(message: Message):
+    await message.answer("Help handled")
 
 
 """
