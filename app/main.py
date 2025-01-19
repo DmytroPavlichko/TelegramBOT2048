@@ -55,7 +55,8 @@ app.include_router(game_router)
 
 @app.get("/test")
 def main_web_handler():
-    return bot
+    return str(dp.sub_routers)
+
 
 if __name__ == '__main__':
     uvicorn.run(app)
