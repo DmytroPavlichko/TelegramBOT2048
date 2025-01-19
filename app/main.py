@@ -16,13 +16,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logging.info("Starting bot setup...")
-    # dp.include_router(bot_router)
+    
     await start_bot()
     webhook_url = settings.get_webhook_url()
     await bot.set_webhook(url=webhook_url,
                           allowed_updates=dp.resolve_used_update_types(),
                           drop_pending_updates=True)
     logging.info(f"Webhook set to {webhook_url}")
+    dp.include_router(bot_router)
     yield
     logging.info("Shutting down bot...")
     await bot.delete_webhook()
@@ -30,9 +31,11 @@ async def lifespan(app: FastAPI):
     logging.info("Webhook deleted")
 
 
+"""
 @dp.message(CommandStart())
 async def pr_start(message: Message):
     await message.answer("Start handled")
+"""
 
 app = FastAPI(lifespan=lifespan)
 
