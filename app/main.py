@@ -55,8 +55,7 @@ app.include_router(game_router)
 
 @app.get("/test")
 def main_web_handler():
-    return settings.get_webhook_url()
-
+    return bot
 
 if __name__ == '__main__':
     uvicorn.run(app)
