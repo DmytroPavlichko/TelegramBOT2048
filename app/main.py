@@ -12,24 +12,24 @@ from fastapi import FastAPI, Request
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-dp.include_router(bot_router)
+# dp.include_router(bot_router)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logging.info("Starting bot setup...")
-    
-    # await start_bot()
-    # webhook_url = settings.get_webhook_url()
-    # await bot.set_webhook(url=webhook_url,
-    #                      allowed_updates=dp.resolve_used_update_types(),
-    #                      drop_pending_updates=True)
-    # logging.info(f"Webhook set to {webhook_url}")
+    dp.include_router(bot_router)
+    await start_bot()
+    webhook_url = settings.get_webhook_url()
+    await bot.set_webhook(url=webhook_url,
+                          allowed_updates=dp.resolve_used_update_types(),
+                          drop_pending_updates=True)
+    logging.info(f"Webhook set to {webhook_url}")
     yield
     logging.info("Shutting down bot...")
-    # await bot.delete_webhook()
-    # await stop_bot()
-    # logging.info("Webhook deleted")
+    await bot.delete_webhook()
+    await stop_bot()
+    logging.info("Webhook deleted")
 
 
 """
@@ -66,6 +66,7 @@ app.include_router(game_router)
 def main_web_handler():
     return str(bot_router.parent_router)
 
-
+"""
 if __name__ == '__main__':
     uvicorn.run(app)
+"""
