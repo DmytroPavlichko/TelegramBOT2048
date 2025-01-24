@@ -39,7 +39,7 @@ async def cmd_start(message: Message, session, **kwargs):
         await message.answer(welcome_text, reply_markup=main_keyboard())
 
     except Exception as e:
-        await message.answer("Произошла ошибка при обработке вашего запроса. Пожалуйста, попробуйте снова позже."+" "+e)
+        await message.answer("Произошла ошибка при обработке вашего запроса. Пожалуйста, попробуйте снова позже."+" "+str(e))
 
 
 @router.callback_query(F.data == 'show_my_record')
