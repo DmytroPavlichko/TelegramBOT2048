@@ -22,7 +22,6 @@ async def cmd_start(message: Message, session, **kwargs):
     )
 
     try:
-        """
         user_id = message.from_user.id
         user_info = await UserDAO.find_one_or_none(session=session, filters=TelegramIDModel(telegram_id=user_id))
 
@@ -36,7 +35,7 @@ async def cmd_start(message: Message, session, **kwargs):
                 best_score=0
             )
             await UserDAO.add(session=session, values=values)
-        """
+
         await message.answer(welcome_text, reply_markup=main_keyboard())
 
     except Exception as e:
