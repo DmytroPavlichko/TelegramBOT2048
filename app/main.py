@@ -64,4 +64,4 @@ app.include_router(game_router)
 
 @app.get("/test")
 def main_web_handler():
-    return str(bot_router.parent_router)
+    return str(webhook_url)
