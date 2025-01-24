@@ -31,9 +31,10 @@ async def lifespan(app: FastAPI):
     await bot.delete_webhook()
     await stop_bot()
     logging.info("Webhook deleted")
-
-
 """
+
+app = FastAPI()
+
 
 @app.on_event("startup")
 async def on_startup():
@@ -56,7 +57,6 @@ async def on_shutdown():
 
 
 # app = FastAPI(lifespan=lifespan)
-app = FastAPI()
 
 
 app.mount('/static', StaticFiles(directory='app/static'), 'static')
