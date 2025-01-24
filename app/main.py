@@ -13,6 +13,10 @@ from fastapi import FastAPI, Request
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 dp.include_router(bot_router)
+webhook_url = settings.get_webhook_url()
+bot.set_webhook(url=webhook_url,
+                allowed_updates=dp.resolve_used_update_types(),
+                drop_pending_updates=True)
 
 
 """
