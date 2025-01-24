@@ -10,17 +10,6 @@ router = Router()
 
 
 @router.message(CommandStart())
-async def cmd_start(message: Message):
-    await message.answer("Start handled")
-
-
-@router.message(Command(commands='help'))
-async def process_help_command(message: Message):
-    await message.answer("Help handled")
-
-
-"""
-@router.message(CommandStart())
 @connection()
 async def cmd_start(message: Message, session, **kwargs):
     welcome_text = (
@@ -51,7 +40,7 @@ async def cmd_start(message: Message, session, **kwargs):
 
     except Exception as e:
         await message.answer("Произошла ошибка при обработке вашего запроса. Пожалуйста, попробуйте снова позже.")
-"""
+
 
 @router.callback_query(F.data == 'show_my_record')
 @connection()
