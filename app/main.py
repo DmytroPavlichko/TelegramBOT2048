@@ -11,7 +11,7 @@ from fastapi import FastAPI, Request
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-"""
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logging.info("Starting bot setup...")
@@ -29,7 +29,7 @@ async def lifespan(app: FastAPI):
     logging.info("Webhook deleted")
 """
 
-app = FastAPI()
+# app = FastAPI()
 
 
 @app.on_event("startup")
@@ -50,9 +50,9 @@ async def on_shutdown():
     await bot.delete_webhook()
     await stop_bot()
     logging.info("Webhook deleted")
+"""
 
-
-# app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan)
 
 
 app.mount('/static', StaticFiles(directory='app/static'), 'static')
